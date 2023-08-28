@@ -1,0 +1,11 @@
+@import url('./reset.scss');
+@import url('./util.scss');
+
+:root {
+  --color-white: #fff;
+  --color-gold: #ffd347;
+}
+
+.flex {
+  display: flex;
+}

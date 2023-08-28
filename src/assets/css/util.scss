@@ -1,0 +1,27 @@
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.window-height {
+  height: 100vh;
+}
+
+.max-width {
+  width: 100%;
+}
+
+.text-break {
+  word-break: break-word;
+}

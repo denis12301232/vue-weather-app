@@ -1,0 +1,5 @@
+{
+  "globalCssFiles": ["src/assets/css/util.scss"],
+  "include": ["**/*.{vue,tsx}"],
+  "exclude": ["**/*.html"]
+}
