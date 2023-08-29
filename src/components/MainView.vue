@@ -3,26 +3,32 @@ import WeatherInfo from './WeatherInfo.vue'
 import WeatherHighlights from './WeatherHighlights.vue'
 import WeatherCoords from './WeatherCoords.vue'
 import WeatherHumidity from './WeatherHumidity.vue'
+import { onMounted, ref } from 'vue'
+import WeatherService from '@/api/services/WeatherService'
+
+const city = ref('')
 </script>
 
 <template>
-  <main class="flex justify-center items-center window-height">
+  <main class="flex justify-center items-center window-height" style="background-color: #0e100f">
     <div :class="$style.container">
-      <WeatherInfo></WeatherInfo>
-      <WeatherHighlights></WeatherHighlights>
-      <WeatherCoords></WeatherCoords>
-      <WeatherHumidity></WeatherHumidity>
+      <WeatherInfo />
+      <WeatherHighlights />
+      <WeatherCoords />
+      <WeatherHumidity />
     </div>
   </main>
 </template>
 
 <style lang="scss" module>
 .container {
-  max-width: 1280px;
+  max-width: 1024px;
   padding: 10px;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid white;
+  border-radius: 10px;
   display: grid;
+  color: var(--color-white);
   grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
     'a a b b b b'

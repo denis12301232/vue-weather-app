@@ -1,11 +1,12 @@
 @import url('./reset.scss');
 @import url('./util.scss');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
 :root {
   --color-white: #fff;
   --color-gold: #ffd347;
 }
 
-.flex {
-  display: flex;
+body {
+  font-family: 'Inter', sans-serif;
 }
