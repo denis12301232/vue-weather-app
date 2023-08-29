@@ -1,10 +1,20 @@
 <script setup lang="ts">
+interface Props {
+  modelValue: string;
+}
 
+defineProps<Props>();
+const emit = defineEmits<{ 'update:modelValue': [value: string] }>();
+
+function onInput(event: Event){
+    const target = event.target as HTMLInputElement;
+    emit('update:modelValue', target.value);
+}
 </script>
 
 <template>
   <div :class="[$style.container, 'flex', 'items-center']">
-    <input :class="$style.input" type="text" />
+    <input :class="$style.input" :value="modelValue" type="text" @input="onInput" />
     <div :class="$style.search">
       <img src="@/assets/images/search.svg" alt="" style="height: 30px; width: 30px" />
     </div>

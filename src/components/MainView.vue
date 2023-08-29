@@ -1,18 +1,30 @@
 <script setup lang="ts">
-import WeatherInfo from './WeatherInfo.vue'
-import WeatherHighlights from './WeatherHighlights.vue'
-import WeatherCoords from './WeatherCoords.vue'
-import WeatherHumidity from './WeatherHumidity.vue'
-import { onMounted, ref } from 'vue'
-import WeatherService from '@/api/services/WeatherService'
+import type { OpenWeather } from '@/types';
+import WeatherInfo from './WeatherInfo.vue';
+import WeatherHighlights from './WeatherHighlights.vue';
+import WeatherCoords from './WeatherCoords.vue';
+import WeatherHumidity from './WeatherHumidity.vue';
+import { onMounted, ref, watchEffect } from 'vue';
+import WeatherService from '@/api/services/WeatherService';
 
-const city = ref('')
+const search = ref('Paris');
+const weatherInfo = ref<OpenWeather.ResponseByCity | null>(null);
+
+function getWeather(){
+  WeatherService.getWeatherByCity(search.value)
+  .then((response) => response.json())
+  .then((json) => weatherInfo.value = json);
+}
+
+onMounted(getWeather);
+
+watchEffect(() => console.log(weatherInfo.value))
 </script>
 
 <template>
   <main class="flex justify-center items-center window-height" style="background-color: #0e100f">
     <div :class="$style.container">
-      <WeatherInfo />
+      <WeatherInfo v-model:search="search" />
       <WeatherHighlights />
       <WeatherCoords />
       <WeatherHumidity />

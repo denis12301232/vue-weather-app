@@ -1,12 +1,27 @@
 <script setup lang="ts">
 import WeatherInput from './WeatherInput.vue';
+import { useVModel } from '@/composables';
+
+interface Props {
+  search: string;
+}
+
+defineProps<Props>();
+defineEmits<{ 'update:search': [value: string] }>();
+
+const query = useVModel<string>('search');
 </script>
 
 <template>
   <div :class="$style.main">
-    <WeatherInput />
-    <img src="@/assets/images/weather/thunderstorm.png" alt="" style="height: 50px; width: 50px; margin-top: 20px;" />
-    <h2 style="margin-top: 50px;">15 C</h2>
+    {{ query }}
+    <WeatherInput v-model="query" />
+    <img
+      src="@/assets/images/weather/thunderstorm.png"
+      alt=""
+      style="height: 50px; width: 50px; margin-top: 20px"
+    />
+    <h2 style="margin-top: 50px">15 C</h2>
     <div>Thunderstorm</div>
     <hr />
     <div>Paris, fr</div>
