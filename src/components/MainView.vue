@@ -58,7 +58,6 @@ function getWeather() {
   padding: 10px;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   border-radius: 10px;
   display: grid;
   color: var(--color-white);
@@ -67,5 +66,26 @@ function getWeather() {
     'a a b b b b'
     'c c c d d d';
   gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      'a a a a'
+      'b b b b'
+      'c c d d';
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas:
+      'a'
+      'b'
+      'c'
+      'd';
+  }
 }
 </style>

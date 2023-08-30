@@ -32,7 +32,7 @@ function formatTime(timestamp: number) {
   <div :class="$style.main">
     <h3 class="title1" style="margin-top: 20px">Today's highlight</h3>
     <div :class="$style.content">
-      <div :class="[$style.card, 'flex', 'flex-col']">
+      <div :class="[$style.card, $style.cardWind, 'flex', 'flex-col']">
         <div class="title2">Wind</div>
         <div class="flex justify-center flex-auto items-center">
           <Icon icon="equalizer.png" width="100" height="100" />
@@ -48,7 +48,7 @@ function formatTime(timestamp: number) {
           </div>
         </div>
       </div>
-      <div :class="[$style.card, 'flex', 'flex-col']">
+      <div :class="[$style.card, $style.cardPressure, 'flex', 'flex-col']">
         <div class="title2">Pressure</div>
         <div class="flex justify-center items-center flex-auto">
           <Icon icon="barometer.png" :width="140" :height="140" />
@@ -78,7 +78,7 @@ function formatTime(timestamp: number) {
           </div>
         </div>
       </div>
-      <div :class="$style.card">
+      <div :class="[$style.card, $style.cardGusts]">
         <div class="title2">Wind gusts</div>
         <div class="flex justify-between items-center" style="gap: 35px">
           <div :class="$style.number">
@@ -100,7 +100,7 @@ function formatTime(timestamp: number) {
           </div>
         </div>
       </div>
-      <div :class="$style.card">
+      <div :class="[$style.card, $style.cardFeelsLike]">
         <div class="title2">Feels like</div>
         <div class="flex justify-between items-center" style="gap: 35px">
           <div :class="$style.number">
@@ -180,6 +180,31 @@ function formatTime(timestamp: number) {
   color: inherit;
   &:hover {
     color: azure;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 0 10px;
+  }
+  .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .cardWind {
+    grid-area: 1;
+  }
+
+  .cardGusts {
+    grid-area: 2;
+  }
+
+  .cardPressure {
+    grid-area: 3;
+  }
+
+  .cardFeelsLike {
+    grid-area: 4;
   }
 }
 </style>

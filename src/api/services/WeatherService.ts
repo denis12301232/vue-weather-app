@@ -4,6 +4,6 @@ export default class WeatherService {
       `${import.meta.env.VITE_OPEN_WEATHER_API_URL}?q=${city}&units=metric&appid=${
         import.meta.env.VITE_OPEN_WEATHER_API_KEY
       }`
-    )
+    );
   }
 }
