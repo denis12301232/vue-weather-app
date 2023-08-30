@@ -54,4 +54,4 @@ export const OpenWeatherCodes = {
   '802': 'clouds', //	scattered clouds: 25-50%
   '803': 'clouds', //	broken clouds: 51-84%
   '804': 'clouds', //	overcast clouds: 85-100%
-};
+} as { [name: string]: string };

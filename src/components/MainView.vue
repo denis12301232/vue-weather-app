@@ -10,34 +10,58 @@ import WeatherService from '@/api/services/WeatherService';
 const search = ref('Paris');
 const weatherInfo = ref<OpenWeather.ResponseByCity | null>(null);
 
-function getWeather(){
+function getWeather() {
   WeatherService.getWeatherByCity(search.value)
-  .then((response) => response.json())
-  .then((json) => weatherInfo.value = json);
+    .then((response) => response.json())
+    .then((json) => (weatherInfo.value = json));
 }
 
 onMounted(getWeather);
 
-watchEffect(() => console.log(weatherInfo.value))
+watchEffect(async () => {
+  await getWeather();
+});
+
+watchEffect(() => console.log(weatherInfo.value));
 </script>
 
 <template>
-  <main class="flex justify-center items-center window-height" style="background-color: #0e100f">
+  <main
+    class="flex justify-center items-center min-window-height"
+    style="background-color: #0e100f"
+  >
     <div :class="$style.container">
-      <WeatherInfo v-model:search="search" />
-      <WeatherHighlights />
-      <WeatherCoords />
-      <WeatherHumidity />
+      <WeatherInfo
+        v-model:search="search"
+        :code="weatherInfo?.weather?.at(0)?.id"
+        :temp="weatherInfo?.main?.temp"
+        :description="weatherInfo?.weather?.at(0)?.description"
+        :city="weatherInfo?.name"
+        :country="weatherInfo?.sys?.country"
+        :time="weatherInfo?.dt"
+      />
+      <WeatherHighlights
+        :wind="weatherInfo?.wind"
+        :pressure="weatherInfo?.main?.pressure"
+        :feels-like="weatherInfo?.main?.feels_like"
+        :clouds="weatherInfo?.clouds"
+        :timezone="weatherInfo?.timezone"
+        :sunrise="weatherInfo?.sys?.sunrise"
+        :sunset="weatherInfo?.sys?.sunset"
+      />
+      <WeatherCoords :coords="weatherInfo?.coord" />
+      <WeatherHumidity :humidity="weatherInfo?.main?.humidity" />
     </div>
   </main>
 </template>
 
 <style lang="scss" module>
 .container {
-  max-width: 1024px;
+  max-width: 1280px;
   padding: 10px;
   width: 100%;
-  border: 1px solid white;
+  height: 100%;
+  box-sizing: border-box;
   border-radius: 10px;
   display: grid;
   color: var(--color-white);
