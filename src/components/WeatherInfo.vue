@@ -3,7 +3,7 @@ import WeatherInput from './WeatherInput.vue';
 import Icon from './Icon.vue';
 import { useVModel } from '@/composables';
 import { OpenWeatherCodes } from '@/util/matching';
-import { computed, watch } from 'vue';
+import { computed } from 'vue';
 
 interface Props {
   search: string;

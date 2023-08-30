@@ -4,25 +4,22 @@ import WeatherInfo from './WeatherInfo.vue';
 import WeatherHighlights from './WeatherHighlights.vue';
 import WeatherCoords from './WeatherCoords.vue';
 import WeatherHumidity from './WeatherHumidity.vue';
-import { onMounted, ref, watchEffect } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import WeatherService from '@/api/services/WeatherService';
+import { throttle } from '@/util';
 
 const search = ref('Paris');
 const weatherInfo = ref<OpenWeather.ResponseByCity | null>(null);
+const throttleWeather = throttle(getWeather, 1000);
+
+onMounted(getWeather);
+watch(search, () => throttleWeather());
 
 function getWeather() {
   WeatherService.getWeatherByCity(search.value)
     .then((response) => response.json())
     .then((json) => (weatherInfo.value = json));
 }
-
-onMounted(getWeather);
-
-watchEffect(async () => {
-  await getWeather();
-});
-
-watchEffect(() => console.log(weatherInfo.value));
 </script>
 
 <template>
