@@ -6,13 +6,18 @@ import WeatherCoords from './WeatherCoords.vue';
 import WeatherHumidity from './WeatherHumidity.vue';
 import { onMounted, ref, watch } from 'vue';
 import WeatherService from '@/api/services/WeatherService';
-import { throttle } from '@/util';
+import { throttle, requestGeolocation } from '@/util';
 
-const search = ref('Paris');
+const search = ref('');
 const weatherInfo = ref<OpenWeather.ResponseByCity | null>(null);
 const throttleWeather = throttle(getWeather, 1000);
 
-onMounted(getWeather);
+onMounted(() => {
+  requestGeolocation()
+    .then((p) => WeatherService.getWeatherByCoords(p.coords.latitude, p.coords.longitude))
+    .then((response) => response.json())
+    .then((json) => (weatherInfo.value = json));
+});
 watch(search, () => throttleWeather());
 
 function getWeather() {

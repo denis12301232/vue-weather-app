@@ -23,3 +23,9 @@ export function throttle<T extends Function>(func: T, ms: number) {
 
   return f as unknown as T;
 }
+
+export async function requestGeolocation() {
+  return new Promise<GeolocationPosition>((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(resolve, reject)
+  );
+}

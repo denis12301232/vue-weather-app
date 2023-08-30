@@ -6,4 +6,12 @@ export default class WeatherService {
       }`
     );
   }
+
+  static getWeatherByCoords(lat: number, lon: number) {
+    return fetch(
+      `${import.meta.env.VITE_OPEN_WEATHER_API_URL}?lat=${lat}&lon=${lon}&units=metric&appid=${
+        import.meta.env.VITE_OPEN_WEATHER_API_KEY
+      }`
+    );
+  }
 }
