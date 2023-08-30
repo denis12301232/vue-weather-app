@@ -31,7 +31,7 @@ function formatTime(timestamp: number) {
 
 <template>
   <div :class="$style.main">
-    <h3 class="title1" style="margin-top: 20px">Today's highlight</h3>
+    <h3 class="title1 my-md">Today's highlight</h3>
     <div :class="$style.content">
       <div :class="[$style.card, $style.cardWind, 'flex', 'flex-col']">
         <div class="title2">Wind</div>
@@ -105,7 +105,8 @@ function formatTime(timestamp: number) {
         <div class="title2">Feels like</div>
         <div class="flex justify-between items-center" style="gap: 35px">
           <div :class="$style.number">
-            {{ feelsLike ? Math.round(feelsLike) + ' °C' : '---' }}
+            {{ feelsLike ? Math.round(feelsLike) : '---' }}
+            <span class="text-body3">°C</span>
           </div>
           <div class="flex flex-col">
             <Icon icon="humidity.svg" :width="16" :height="16" />

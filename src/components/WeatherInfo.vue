@@ -35,7 +35,7 @@ const date = computed(() =>
 <template>
   <div :class="$style.main">
     <WeatherInput v-model="query" />
-    <Icon :icon="`weather/${image}.png`" :width="70" :height="70" style="margin-top: 20px" />
+    <Icon class="mt-md" :icon="`weather/${image}.png`" :width="70" :height="70" />
     <h1 style="margin-top: 40px">{{ temp ? Math.round(temp) : '---' }} °C</h1>
     <div class="flex items-center">
       <Icon icon="weather.svg" :width="20" :height="20" />
@@ -53,7 +53,7 @@ const date = computed(() =>
       />
       <div style="margin-left: 10px">{{ city ? city + ', ' + country : '---' }}</div>
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center mt-sm">
       <Icon icon="calendar.svg" width="15" height="15" />
       <div style="margin-left: 10px">{{ date }}</div>
     </div>
