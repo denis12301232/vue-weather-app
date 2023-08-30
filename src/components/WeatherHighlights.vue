@@ -187,7 +187,7 @@ function formatTime(timestamp: number) {
 
 @media (max-width: 768px) {
   .main {
-    padding: 0 10px;
+    padding: 0 10px 20px 10px;
   }
   .content {
     grid-template-columns: repeat(1, 1fr);
