@@ -2,6 +2,7 @@
 import type { OpenWeather } from '@/types';
 import Icon from './Icon.vue';
 import { computed } from 'vue';
+import { converHpaToMmhg } from '@/util';
 
 interface Props {
   wind?: OpenWeather.ResponseByCity['wind'];
@@ -55,7 +56,7 @@ function formatTime(timestamp: number) {
         </div>
         <div class="flex justify-center" style="padding-bottom: 25px">
           <div>
-            {{ pressure ? pressure : '---' }}
+            {{ pressure ? converHpaToMmhg(pressure) : '---' }}
             <span class="text-body3">mm</span>
           </div>
         </div>
