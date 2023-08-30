@@ -16,7 +16,7 @@ function onInput(event: Event){
   <div :class="[$style.container, 'flex', 'items-center']">
     <input :class="$style.input" :value="modelValue" type="text" @input="onInput" />
     <div :class="$style.search">
-      <img src="@/assets/images/search.svg" alt="" style="height: 30px; width: 30px" />
+      <img src="@/assets/icons/search.svg" alt="" style="height: 30px; width: 30px" />
     </div>
   </div>
 </template>
